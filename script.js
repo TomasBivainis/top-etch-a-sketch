@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
 const button = document.querySelector("button");
+let light = 100;
 
 button.addEventListener('click', () => {
   let num = prompt("Enter the size of the grid (100 is maximum):", 1);
@@ -23,7 +24,12 @@ function generateGrid(num) {
       box.classList.add("box");
   
       box.addEventListener('mouseover', () => {
-        box.style.background = 'black';
+        box.style.background = `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+
+        /*
+        box.style.background = `hsl(${random(0, 360)}deg, ${random(0, 100)}%, ${light}%)`;
+        light-=10;
+        */
       })
   
       row.appendChild(box);
@@ -35,4 +41,10 @@ function generateGrid(num) {
 
 function deleteGrid() {
   container.innerHTML = '';
+}
+
+function random(from, to) {
+  to -= from;
+
+  return Math.floor(Math.random() * to) + from;
 }
